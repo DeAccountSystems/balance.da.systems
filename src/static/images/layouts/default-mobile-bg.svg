@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="375px" height="170px" viewBox="0 0 375 170" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>切片</title>
+    <defs>
+        <rect id="path-1" x="0" y="0" width="375" height="192"></rect>
+        <linearGradient x1="100%" y1="21.1982735%" x2="-10.5921672%" y2="116.87531%" id="linearGradient-3">
+            <stop stop-color="#F9FAFC" stop-opacity="0" offset="0%"></stop>
+            <stop stop-color="#D4E6FF" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-4">
+            <stop stop-color="#FFF8FC" stop-opacity="0" offset="0%"></stop>
+            <stop stop-color="#FDEFF7" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-5">
+            <stop stop-color="#FFF7EF" offset="0%"></stop>
+            <stop stop-color="#FFECDB" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="页面-1调整后" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="MarketPlace-Fixed-Price" transform="translate(0.000000, -90.000000)">
+            <g id="首页点缀" transform="translate(0.000000, 67.500000)">
+                <mask id="mask-2" fill="white">
+                    <use xlink:href="#path-1"></use>
+                </mask>
+                <use id="矩形" fill-opacity="0" fill="#FFFFFF" xlink:href="#path-1"></use>
+                <g id="编组-9" mask="url(#mask-2)">
+                    <g transform="translate(-11.500000, 0.000000)">
+                        <path d="M40,61 C62.09139,61 80,78.90861 80,101 C80,123.09139 62.09139,141 40,141 C17.90861,141 2.705415e-15,123.09139 0,101 C-2.705415e-15,78.90861 17.90861,61 40,61 Z" id="矩形" fill="url(#linearGradient-3)"></path>
+                        <path d="M358.5,106 C369.545695,106 378.5,114.954305 378.5,126 C378.5,137.045695 369.545695,146 358.5,146 C347.454305,146 338.5,137.045695 338.5,126 C338.5,114.954305 347.454305,106 358.5,106 Z" id="矩形备份-2" fill="url(#linearGradient-4)"></path>
+                        <circle id="椭圆形备份" fill="url(#linearGradient-5)" cx="154" cy="96" r="10"></circle>
+                        <circle id="椭圆形备份-3" fill="url(#linearGradient-4)" cx="244.5" cy="36" r="36"></circle>
+                        <circle id="椭圆形备份-2" fill="url(#linearGradient-4)" cx="134" cy="182" r="10"></circle>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

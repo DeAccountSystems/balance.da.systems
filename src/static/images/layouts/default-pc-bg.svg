@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1618px" height="271px" viewBox="0 0 1618 271" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>首页点缀-pc</title>
+    <defs>
+        <rect id="path-1" x="0" y="0" width="1618" height="271"></rect>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-3">
+            <stop stop-color="#F9FAFC" stop-opacity="0" offset="0%"></stop>
+            <stop stop-color="#F1F3F7" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-4">
+            <stop stop-color="#FFF8FC" stop-opacity="0" offset="0%"></stop>
+            <stop stop-color="#FDEFF7" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-5">
+            <stop stop-color="#FFF7EF" offset="0%"></stop>
+            <stop stop-color="#FFECDB" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-6">
+            <stop stop-color="#FFF7EF" offset="0%"></stop>
+            <stop stop-color="#FFECDB" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="页面-1调整后" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="MarketPlace-Fixed-Price" transform="translate(-151.000000, 0.000000)">
+            <g id="首页点缀-pc" transform="translate(151.000000, 0.000000)">
+                <mask id="mask-2" fill="white">
+                    <use xlink:href="#path-1"></use>
+                </mask>
+                <use id="矩形" fill-opacity="0" fill="#FFFFFF" xlink:href="#path-1"></use>
+                <g id="编组-4" mask="url(#mask-2)">
+                    <g transform="translate(24.000000, -74.000000)">
+                        <path d="M61,183 C94.6893697,183 122,210.31063 122,244 C122,277.68937 94.6893697,305 61,305 C27.3106303,305 -2.97966948e-15,277.68937 0,244 C-1.12311852e-14,210.31063 27.3106303,183 61,183 Z" id="矩形" fill="url(#linearGradient-3)"></path>
+                        <path d="M1251,223 C1284.68937,223 1312,250.31063 1312,284 C1312,317.68937 1284.68937,345 1251,345 C1217.31063,345 1190,317.68937 1190,284 C1190,250.31063 1217.31063,223 1251,223 Z" id="矩形备份-2" fill="url(#linearGradient-4)"></path>
+                        <circle id="椭圆形备份-3" fill="url(#linearGradient-3)" cx="439" cy="61" r="61"></circle>
+                        <circle id="椭圆形备份-2" fill="url(#linearGradient-5)" cx="1560" cy="180.5" r="33.5"></circle>
+                        <g id="编组-13" stroke-width="1" fill="none" transform="translate(356.081416, 271.000000)">
+                            <ellipse id="椭圆形" fill="url(#linearGradient-6)" transform="translate(21.918584, 17.000000) rotate(-30.000000) translate(-21.918584, -17.000000) " cx="21.9185843" cy="17" rx="23" ry="4"></ellipse>
+                            <circle id="椭圆形备份" fill="url(#linearGradient-5)" cx="21.9185843" cy="17" r="17"></circle>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
