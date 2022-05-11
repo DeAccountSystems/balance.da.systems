@@ -35,9 +35,8 @@
           class="dialog__action"
         >
           <Button
-            primary
-            large
             block
+            primary
             @click="onClose(true)"
           >
             {{ actionButtonText || $tt('OK') }}
@@ -86,7 +85,7 @@ export default Vue.extend({
   },
   computed: {
     containerLayoutMaxHeight (): string {
-      return `${window.innerHeight * 0.9 - 68}px`
+      return `${window.innerHeight * 0.9 - 92}px`
     }
   },
   watch: {
@@ -119,6 +118,7 @@ export default Vue.extend({
   left: 0;
   display: flex;
   justify-content: center;
+  cursor: default;
   height: 100%;
   width: 100%;
   background: rgba(27, 29, 33, 0.7);
@@ -131,11 +131,12 @@ export default Vue.extend({
 
 .dialog__container {
   width: 92%;
-  max-width: 360px;
+  max-width: 394px;
   max-height: 90%;
   align-self: center;
   border-radius: 24px;
   background: $white;
+  overflow: hidden;
 }
 
 .dialog__container__layout {
@@ -149,7 +150,7 @@ export default Vue.extend({
 }
 
 .dialog__content {
-  padding: 0 24px;
+  padding: 0 32px;
   font-size: 14px;
   color: $primary-font-color;
   line-height: 20px;
@@ -157,10 +158,10 @@ export default Vue.extend({
 }
 
 .dialog__slot-content {
-  padding: 0 24px;
+  padding: 0 32px;
 }
 
 .dialog__action {
-  padding: 24px;
+  padding: 32px;
 }
 </style>

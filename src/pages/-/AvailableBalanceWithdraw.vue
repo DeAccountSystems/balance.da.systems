@@ -114,7 +114,7 @@ import { mapGetters, mapState } from 'vuex'
 import { expandUnit, fromSatoshi, mmJsonHashAndChainIdHex, sleep, thousandSplit } from '~/modules/tools'
 import { IConnectedAccount, ME_KEYS } from '~/store/me'
 import { validate, ValidationObserver, ValidationProvider } from 'vee-validate'
-import { CKB, LOCK_SCRIPT_TYPE } from '~/constant/chain'
+import { ChainType, CKB, LOCK_SCRIPT_TYPE } from '~/constant/chain'
 import errno from '~/constant/errno'
 import TextInput from '~/components/form/TextInput.vue'
 import AccountInput from '~/components/form/AccountInput.vue'
@@ -153,8 +153,8 @@ export default defineComponent({
       me: ME_KEYS.namespace
     }),
     ...mapGetters({
-      computedChainId: ME_KEYS.computedChainId,
-      computedEvmChainId: ME_KEYS.computedEvmChainId
+      computedChainType: ME_KEYS.computedChainType,
+      computedChainId: ME_KEYS.computedChainId
     }),
     connectedAccount (): IConnectedAccount {
       return this.me.connectedAccount
@@ -201,10 +201,10 @@ export default defineComponent({
 
       try {
         const res = await this.$services.account.availableBalanceWithdraw({
-          chain_type: this.computedChainId,
-          evm_chain_id: this.computedEvmChainId,
+          chain_type: this.computedChainType,
+          evm_chain_id: this.computedChainId,
           address: this.connectedAccount.address,
-          receiver_chain_type: CKB.chainId,
+          receiver_chain_type: ChainType.ckb,
           receiver_address: this.sendToCKBAddress,
           amount: expandUnit(this.amount, CKB.decimals),
           withdraw_all: String(this.amount) === this.availableBalance

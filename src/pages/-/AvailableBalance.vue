@@ -11,7 +11,7 @@
         <span>{{ $tt('To be activated: {balance} CKB', { balance: thousandSplit(transitBalance) }) }}</span>
         <a
           class="available-balance__transit_balance__faq"
-          :href="$i18n.locale === 'zh-CN' ? 'https://talk.da.systems/t/bestdas-com/115#ckb-10' : `https://talk.da.systems/t/faq-bestdas-com/116#why-does-the-ckb-i-deposited-needs-to-be-activated-and-is-the-activation-process-secure-10`"
+          :href="$i18n.locale === 'zh-CN' ? 'https://talk.did.id/t/bestdas-com/115#ckb-8' : `https://talk.did.id/t/faq-bestdas-com/116#why-does-the-ckb-i-sent-needs-to-be-activated-and-is-the-activation-process-secure-8`"
           :target="isMobile ? '_self' : '_blank'"
         >
           <Iconfont name="help" size="14" color="#929BB1" />
@@ -120,7 +120,7 @@
             <template slot="link">
               <a
                 class="transit-balance__deposit__tips__link"
-                :href="$i18n.locale === 'zh-CN' ? 'https://talk.da.systems/t/bestdas-com/115#350-ckb-7' : 'https://talk.da.systems/t/faq-bestdas-com/116#why-is-it-recommended-to-deposit-at-least-350-ckb-6'"
+                :href="$i18n.locale === 'zh-CN' ? 'https://talk.did.id/t/bestdas-com/115#h-350-ckb-7' : 'https://talk.did.id/t/faq-bestdas-com/116#why-is-it-recommended-to-send-at-least-350-ckb-6'"
                 :target="isMobile ? '_self' : '_blank'"
               >
                 {{ $tt('Why?') }}
@@ -203,7 +203,7 @@ export default defineComponent({
       common: COMMON_KEYS.namespace,
     }),
     ...mapGetters({
-      computedChainId: ME_KEYS.computedChainId
+      computedChainType: ME_KEYS.computedChainType
     }),
     connectedAccount (): IConnectedAccount {
       return this.me.connectedAccount
@@ -224,7 +224,7 @@ export default defineComponent({
     },
     receiptAddress (): string {
       const res = this.ckbAddressList.find((item) => {
-        return item.address === this.connectedAccount.address && item.addressChainId === this.computedChainId
+        return item.address === this.connectedAccount.address && item.addressChainId === this.computedChainType
       })
       if (res) {
         return res.ckbAddress
@@ -235,7 +235,7 @@ export default defineComponent({
     },
     receiptFullAddress (): string {
       const res = this.ckbAddressList.find((item) => {
-        return item.address === this.connectedAccount.address && item.addressChainId === this.computedChainId
+        return item.address === this.connectedAccount.address && item.addressChainId === this.computedChainType
       })
       if (res) {
         return res.fullCkbAddress
@@ -267,13 +267,13 @@ export default defineComponent({
     async onTransfer () {
       this.onTransferLoading = true
       const addresses = this.ckbAddressList.find((item) => {
-        return item.address === this.connectedAccount.address && item.addressChainId === this.computedChainId
+        return item.address === this.connectedAccount.address && item.addressChainId === this.computedChainType
       })
 
       try {
         const res = await this.$services.account.transitBalanceTransfer({
           transfer_address: (addresses as ICkbAddress).ckbAddress,
-          chain_type: this.computedChainId,
+          chain_type: this.computedChainType,
           address: this.connectedAccount.address
         })
 

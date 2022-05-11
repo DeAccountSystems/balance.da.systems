@@ -1,7 +1,3 @@
-import { BSC, ETH, Polygon, TRON } from '~/constant/chain'
-
-export const DEBOUNCE_WAIT_TIME = 600
-
 export const CYCLE_CALL_FUNCTION_TIME = 5000
 
 export const TOAST_DURATION_TIME = 1500
@@ -20,30 +16,12 @@ export const TIME_FORMAT = {
 
 export const DEFAULT_PAGE_SIZE = 20
 
-export const WALLETS = {
-  abcWallet: 'ABC Wallet',
-  metaMask: 'MetaMask',
-  bscWallet: 'bscWallet',
-  polygonWallet: 'polygonWallet',
-  walletConnect: 'WalletConnect',
-  coinbaseWallet: 'Coinbase Wallet',
-  tronLink: 'TronLink'
-}
-
-export const WalletNameToChain = {
-  [WALLETS.metaMask]: ETH,
-  [WALLETS.bscWallet]: BSC,
-  [WALLETS.polygonWallet]: Polygon,
-  [WALLETS.walletConnect]: ETH,
-  [WALLETS.coinbaseWallet]: ETH,
-  [WALLETS.tronLink]: TRON
-}
-
-export enum TRX_STATUS {
-  rejected = -1,
-  unpackaged,
-  confirming,
-  success
+export enum WalletProtocol {
+  metaMask = 'metaMask',
+  tronLink = 'tronLink',
+  torus = 'torus',
+  uniSign = 'uniSign',
+  walletConnect = 'walletConnect'
 }
 
 export enum ACTION_TYPE {
@@ -69,6 +47,9 @@ export enum ACTION_TYPE {
   acceptOffer, // accept offer
   offerAccepted, // offer accepted
   editOfferSub, // edit to reduce the offer
+  orderRefund, // order refund
+  enableSubAccount, // enable sub account
+  createSubAccount, // create sub account
   refundOfDeposit = 100, // refund of deposit
 }
 
@@ -77,22 +58,4 @@ export enum ParsingRecordType {
   profile = 'profile',
   dweb = 'dweb',
   customKey = 'custom_key'
-}
-
-export enum ParsingRecordProfileKey {
-  twitter = 'twitter',
-  facebook = 'facebook',
-  reddit = 'reddit',
-  linkedin = 'linkedin',
-  github = 'github',
-  telegram = 'telegram',
-  description = 'description',
-  avatar = 'avatar',
-  instagram = 'instagram',
-  weibo = 'weibo',
-  discord = 'discord',
-  website = 'website',
-  youtube = 'youtube',
-  bilibili = 'bilibili',
-  tiktok = 'tiktok'
 }

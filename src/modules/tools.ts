@@ -7,6 +7,7 @@ import dayjs, { Dayjs } from 'dayjs'
 import { TIME_FORMAT, TOKEN_DECIMAL_PLACES } from '~/constant'
 import { CKB } from '~/constant/chain'
 import Web3Utils from 'web3-utils'
+import Das from 'das-sdk'
 
 /**
  * Used to determine whether it is a mobile terminal
@@ -279,4 +280,12 @@ export function mmJsonHashAndChainIdHex (typedData: TypedMessage<any>, chainId: 
 export function chainIdHexToNumber (chainId: string | number): number {
   const _chainId = Web3Utils.isHexStrict(chainId) ? Web3Utils.hexToNumber(chainId) : chainId
   return Number(_chainId)
+}
+
+export function toDottedStyle (inputAccount: string): string {
+  return Das.toDottedStyle(inputAccount)
+}
+
+export function toHashedStyle (inputAccount: string): string {
+  return Das.toHashedStyle(inputAccount)
 }

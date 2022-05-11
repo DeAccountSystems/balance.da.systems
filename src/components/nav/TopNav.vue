@@ -60,9 +60,6 @@ export default defineComponent({
       me: ME_KEYS.namespace
     }),
     isMobile,
-    loggedIn (): boolean {
-      return this.me.loggedIn
-    },
     connectedAccount (): IConnectedAccount {
       return this.me.connectedAccount
     }

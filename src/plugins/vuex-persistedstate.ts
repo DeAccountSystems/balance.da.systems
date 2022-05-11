@@ -11,7 +11,6 @@ export default ({ store }: Context) => {
       'me.connectedAccount',
       'me.inviter',
       'me.channel',
-      'me.loggedIn',
       'me.ckbAddressList',
       'me.availableBalance',
       'me.transitBalance'

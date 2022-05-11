@@ -4,7 +4,6 @@ import { max, min_value, max_value, required, integer } from 'vee-validate/dist/
 import { formatsByName } from '@ensdomains/address-encoder'
 import { BSC, CKB, ETH, Polygon } from '~/constant/chain'
 import { isValidAdaAddress } from '~/modules/ADAValidator'
-import { ParsingRecordProfileKey } from '~/constant'
 import { $tt } from '~/plugins/i18n'
 import { thousandSplit } from '~/modules/tools'
 import config from '~~/config'
@@ -126,23 +125,6 @@ export default function ({ app }: Context) {
     },
     message: (fieldName): string => {
       return $tt('{fieldName} can only contain lowercase letters, numbers and underscores', { fieldName })
-    }
-  })
-
-  // profile value
-  extend('profileValue', {
-    params: ['key'],
-    validate (value: string, args: any) {
-      const key = args.key
-      switch (key) {
-        case ParsingRecordProfileKey.twitter:
-          return /^[a-zA-Z0-9_]+$/g.test(value)
-        default:
-          return true
-      }
-    },
-    message: (fieldName): string => {
-      return $tt('{fieldName} can only contain letters, numbers and underscores', { fieldName })
     }
   })
 

@@ -12,6 +12,7 @@ const keys = {
   setLanguage: 'setLanguage',
   setTokens: 'setTokens',
   setHardwareWalletTipsShow: 'setHardwareWalletTipsShow',
+  setTorusLoginSuccessTipsShow: 'setTorusLoginSuccessTipsShow',
   // actions
   fetchConfig: 'fetchConfig',
   fetchTokens: 'fetchTokens',
@@ -28,7 +29,8 @@ export const state = () => ({
     min_sell_price: 0,
   } as IConfig,
   tokens: [] as IToken[],
-  hardwareWalletTipsShow: true
+  hardwareWalletTipsShow: true,
+  torusLoginSuccessTipsShow: undefined
 })
 
 export type CommonState = ReturnType<typeof state>
@@ -42,6 +44,10 @@ export const mutations: MutationTree<CommonState> = {
   },
   [keys.setHardwareWalletTipsShow]: (state, value: boolean) => {
     state.hardwareWalletTipsShow = value
+  },
+  [keys.setTorusLoginSuccessTipsShow]: (state, value: boolean) => {
+    // @ts-ignore
+    state.torusLoginSuccessTipsShow = value
   }
 }
 

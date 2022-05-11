@@ -3,10 +3,10 @@ import { TranslateResult } from 'vue-i18n'
 import Dialog from '~/components/Dialog.vue'
 
 export interface IAlertOptions {
-  title: string | TranslateResult
-  message: string | TranslateResult
-  actionButtonText?: string
-  closeButton?: boolean
+  title: string | TranslateResult,
+  message: string | TranslateResult,
+  actionButtonText?: string,
+  closeButton?: boolean,
 }
 
 export default function ({ app }: Context, inject: Function) {

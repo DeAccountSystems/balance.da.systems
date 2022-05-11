@@ -15,7 +15,7 @@ export default {
   head: {
     // titleTemplate: '%s - ' + config.appNmae,
     // title: config.appNmae,
-    title: 'DAS Balance',
+    title: '.bit Balance',
     htmlAttrs: {
       lang: 'en'
     },
@@ -25,28 +25,28 @@ export default {
       { name: 'apple-mobile-web-app-capable', content: 'yes' },
       { name: 'format-detection', content: 'telephone=no' },
       // { hid: 'description', name: 'description', content: config.description },
-      { hid: 'description', name: 'description', content: 'Balance for DAS' },
-      { hid: 'keyword', name: 'keywords', content: 'das, buy das, sell das, trade das, bit, NFT, bid das, das store, das market, buy domain, sell domain, purchase domain, domain name service, domain investment, DNS, blockchain domain, nervos, ckb, decentralized domain' },
+      { hid: 'description', name: 'description', content: 'Balance for .bit' },
+      { hid: 'keyword', name: 'keywords', content: '.bit, buy .bit, sell .bit, trade .bit, bit, NFT, bid .bit, .bit store, .bit market, buy domain, sell domain, purchase domain, domain name service, domain investment, DNS, blockchain domain, nervos, ckb, decentralized domain' },
       // The Open Graph protocol
-      { hid: 'og:description', property: 'og:description', content: 'Balance for DAS' },
-      { hid: 'og:title', property: 'og:title', content: 'DAS Balance' },
-      { hid: 'og:site_name', property: 'og:site_name', content: 'DAS Balance' },
+      { hid: 'og:description', property: 'og:description', content: 'Balance for .bit' },
+      { hid: 'og:title', property: 'og:title', content: '.bit Balance' },
+      { hid: 'og:site_name', property: 'og:site_name', content: '.bit Balance' },
       { hid: 'og:type', property: 'og:type', content: 'article' },
       { hid: 'og:url', property: 'og:url', content: `https://${abcConfig.hostname}/` },
       { hid: 'og:image', property: 'og:image', content: `https://${abcConfig.hostname}/images/seo-thumbnail-image.png` },
       // Twitter
       { hid: 'twitter:card', name: 'twitter:card', content: 'summary_large_image' },
-      { hid: 'twitter:site', name: 'twitter:site', content: 'DAS Balance' },
-      { hid: 'twitter:title', name: 'twitter:title', content: 'DAS Balance' },
-      { hid: 'twitter:description', name: 'twitter:description', content: 'Balance for DAS' },
+      { hid: 'twitter:site', name: 'twitter:site', content: '.bit Balance' },
+      { hid: 'twitter:title', name: 'twitter:title', content: '.bit Balance' },
+      { hid: 'twitter:description', name: 'twitter:description', content: 'Balance for .bit' },
       { hid: 'twitter:image', name: 'twitter:image', content: `https://${abcConfig.hostname}/images/seo-thumbnail-image.png` },
-      { hid: 'twitter:image:alt', name: 'twitter:image:alt', content: 'DAS Balance' }
+      { hid: 'twitter:image:alt', name: 'twitter:image:alt', content: '.bit Balance' }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ],
     script: [{
-      src: '//at.alicdn.com/t/font_2747750_3fz442h6apm.js',
+      src: '//at.alicdn.com/t/font_2747750_mpby85lxsro.js',
       async: true
     }]
   },
@@ -83,8 +83,6 @@ export default {
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
-    // https://go.nuxtjs.dev/axios
-    // '@nuxtjs/axios',
     // https://composition-api.nuxtjs.org/
     ['@nuxtjs/composition-api/module'],
     // https://sentry.nuxtjs.org/

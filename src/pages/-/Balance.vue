@@ -73,7 +73,7 @@ import secp256k1 from 'secp256k1'
 import { Buffer } from 'buffer/'
 import { COMMON_KEYS } from '~/store/common'
 import Decimal from 'decimal.js'
-import { CHAIN_ID } from '~/constant/chain'
+import { ChainType } from '~/constant/chain'
 
 export default defineComponent({
   name: 'Balance',
@@ -104,7 +104,7 @@ export default defineComponent({
       common: COMMON_KEYS.namespace,
     }),
     ...mapGetters({
-      computedChainId: ME_KEYS.computedChainId
+      computedChainType: ME_KEYS.computedChainType
     }),
     connectedAccount (): IConnectedAccount {
       return this.me.connectedAccount
@@ -113,7 +113,7 @@ export default defineComponent({
       return this.me.ckbAddressList
     },
     loggedIn (): boolean {
-      return this.me.loggedIn
+      return !!this.me.connectedAccount.address
     },
     availableBalance (): string {
       return fromSatoshi(this.me.availableBalance)
@@ -138,17 +138,17 @@ export default defineComponent({
       if (this.loggedIn) {
         this.getMyTrxHistory()
         const res = this.ckbAddressList.find((item) => {
-          return item.address === this.connectedAccount.address && item.addressChainId === this.computedChainId
+          return item.address === this.connectedAccount.address && item.addressChainId === this.computedChainType
         })
         if (res && res.fullCkbAddress) {
           this.getBalanceInfo()
         }
         else {
-          if (this.computedChainId === CHAIN_ID.tron) {
+          if (this.computedChainType === ChainType.tron) {
             const _fullCkbAddress = await this.getTronFullAddress()
             this.$store.commit(ME_KEYS.setCkbAddressList, {
               address: this.connectedAccount.address,
-              addressChainId: this.computedChainId,
+              addressChainId: this.computedChainType,
               ckbAddress: '',
               fullCkbAddress: _fullCkbAddress
             })
@@ -158,9 +158,6 @@ export default defineComponent({
             this.createCkbAddressDialogShowing = true
           }
         }
-      }
-      else {
-        this.$walletSdk.walletsConnect()
       }
     },
     onCloseCreateCkbAddressDialog () {
@@ -174,7 +171,7 @@ export default defineComponent({
       this.fetchDataLoading = true
       try {
         const res = await this.$services.account.myTrxHistory({
-          chainType: this.computedChainId,
+          chainType: this.computedChainType,
           address: this.connectedAccount.address,
           page: this.page
         })
@@ -301,7 +298,7 @@ export default defineComponent({
 
           this.$store.commit(ME_KEYS.setCkbAddressList, {
             address: this.connectedAccount.address,
-            addressChainId: this.computedChainId,
+            addressChainId: this.computedChainType,
             ckbAddress,
             fullCkbAddress: this.getEthFullAddress()
           })

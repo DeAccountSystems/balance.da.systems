@@ -6,7 +6,7 @@ export const WalletSdkProvider = 'WalletSdkProvider'
 
 export default function (context: Context, inject: Function) {
   const _walletSdk = new WalletSdk(context)
-  _walletSdk.init()
+  _walletSdk.onConnect()
   inject('walletSdk', _walletSdk)
 
   // provide services for composition-api
