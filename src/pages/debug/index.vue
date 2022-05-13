@@ -82,7 +82,7 @@ export default defineComponent({
       return window.location.origin
     },
     localStorageValue (): string {
-      return localStorage.getItem(config.appNmae) || ''
+      return localStorage.getItem(config.appNmae + 'v2') || ''
     }
   },
   beforeMount () {
@@ -117,7 +117,7 @@ export default defineComponent({
       })
     },
     onClearCache () {
-      localStorage.removeItem(config.appNmae)
+      localStorage.removeItem(config.appNmae + 'v2')
       window.location.href = config.domain
     }
   }
