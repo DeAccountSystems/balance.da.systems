@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import * as Integrations from '@sentry/integrations'
 import abcConfig from './abc.config'
+import { resolve } from 'path'
 
 export default {
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
@@ -114,6 +115,10 @@ export default {
   render: {
     // prevent preload, improve first time performance
     resourceHints: false
+  },
+
+  alias: {
+    'bn.js': resolve(__dirname, './node_modules/bn.js/lib/bn.js')
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build

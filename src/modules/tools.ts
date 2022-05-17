@@ -6,7 +6,6 @@ import { SignTypedDataVersion, TypedMessage, TypedDataUtils } from '@metamask/et
 import dayjs, { Dayjs } from 'dayjs'
 import { TIME_FORMAT, TOKEN_DECIMAL_PLACES } from '~/constant'
 import { CKB } from '~/constant/chain'
-import Web3Utils from 'web3-utils'
 import Das from 'das-sdk'
 
 /**
@@ -271,15 +270,6 @@ export function mmJsonHashAndChainIdHex (typedData: TypedMessage<any>, chainId: 
   const mmHash = TypedDataUtils.eip712Hash(typedData, SignTypedDataVersion.V4).toString('hex')
   const chainIdHex = new BN(chainId).toString(16, 16)
   return mmHash + chainIdHex
-}
-
-/**
- * convert a hexadecimal chainId to decimal
- * @param chainId
- */
-export function chainIdHexToNumber (chainId: string | number): number {
-  const _chainId = Web3Utils.isHexStrict(chainId) ? Web3Utils.hexToNumber(chainId) : chainId
-  return Number(_chainId)
 }
 
 export function toDottedStyle (inputAccount: string): string {

@@ -1,8 +1,6 @@
-import PWCore, { Address, AddressType, Amount, Builder, IndexerCollector } from '@lay2/pw-core'
 import { Context } from '@nuxt/types'
 import Vue from 'vue'
-import Torus from '@toruslabs/torus-embed'
-import Wallets from 'wallet-sdk-js'
+import Wallets, { chainIdHexToNumber } from 'wallet-sdk-js'
 import { TranslateResult } from 'vue-i18n'
 import debounce from 'lodash.debounce'
 import WalletsConnect from '~/components/WalletsConnect.vue'
@@ -18,10 +16,9 @@ import {
   EvmCoinTypes
 } from '~/constant/chain'
 import errno from '~/constant/errno'
-import { chainIdHexToNumber, isMobileDevices, shrinkUnit, sleep } from '~/modules/tools'
+import { isMobileDevices, shrinkUnit, sleep } from '~/modules/tools'
 import { ME_KEYS } from '~/store/me'
 import { ckbNode, isProdData } from '~~/config'
-import DasEthProvider from '~/modules/DasEthProvider'
 import { COMMON_KEYS } from '~/store/common'
 
 interface ISendTrxParams {
@@ -37,7 +34,7 @@ export default class WalletSdk {
   coinType: CoinType
   chainId: ChainId
   wallet: Wallets
-  torusWallet: Torus
+  torusWallet: any
 
   constructor (context: Context) {
     this.context = context
@@ -190,7 +187,8 @@ export default class WalletSdk {
         }
       }
       else if (this.protocol === WalletProtocol.torus) {
-        this.torusWallet = new Torus({
+        const Torus = await import('@toruslabs/torus-embed')
+        this.torusWallet = new Torus.default({
           buttonPosition: 'bottom-right'
         })
         try {
@@ -436,17 +434,19 @@ export default class WalletSdk {
       return
     }
     try {
-      const pwcore = await new PWCore(ckbNode).init(
-        new DasEthProvider(),
-        new IndexerCollector(ckbNode)
+      const PW = await import('@lay2/pw-core')
+      const DasEthProvider = await import('~/modules/DasEthProvider')
+      const pwcore = await new PW.default(ckbNode).init(
+        new DasEthProvider.default(),
+        new PW.IndexerCollector(ckbNode)
       )
 
       return await pwcore.send(
-        new Address(to, AddressType.ckb),
-        new Amount(shrinkUnit(value, CKB.decimals)),
+        new PW.Address(to, PW.AddressType.ckb),
+        new PW.Amount(shrinkUnit(value, CKB.decimals)),
         {
           data,
-          witnessArgs: Builder.WITNESS_ARGS.RawSecp256k1
+          witnessArgs: PW.Builder.WITNESS_ARGS.RawSecp256k1
         }
       )
     }
