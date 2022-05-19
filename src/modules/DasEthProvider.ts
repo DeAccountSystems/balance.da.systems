@@ -1,11 +1,14 @@
-import {
+import PW, {
   Provider,
   Address,
   AddressType,
-  Platform
+  Platform,
+  IndexerCollector,
+  Amount,
+  Builder
 } from '@lay2/pw-core'
 
-export default class DasEthProvider extends Provider {
+class DasEthProvider extends Provider {
   onAddressChanged?: (newAddress: Address) => void
 
   constructor (onAddressChanged?: (newAddress: Address) => void) {
@@ -75,6 +78,9 @@ export default class DasEthProvider extends Provider {
           .then((result: string) => {
             resolve(handleResult(result))
           })
+          .catch((err: Error) => {
+            reject(err)
+          })
       }
       else if (window.web3) {
         window.web3.currentProvider.sendAsync(
@@ -104,4 +110,14 @@ export default class DasEthProvider extends Provider {
   close () {
     return true
   }
+}
+
+export {
+  PW,
+  IndexerCollector,
+  Address,
+  AddressType,
+  Amount,
+  Builder,
+  DasEthProvider
 }

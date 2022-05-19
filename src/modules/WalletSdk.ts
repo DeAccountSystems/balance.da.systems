@@ -434,21 +434,21 @@ export default class WalletSdk {
       return
     }
     try {
-      const PW = await import('@lay2/pw-core')
-      const DasEthProvider = await import('~/modules/DasEthProvider')
-      const pwcore = await new PW.default(ckbNode).init(
-        new DasEthProvider.default(),
-        new PW.IndexerCollector(ckbNode)
+      const res = await import('~/modules/DasEthProvider')
+      const pwcore = await new res.PW(ckbNode).init(
+        new res.DasEthProvider(),
+        new res.IndexerCollector(ckbNode)
       )
 
-      return await pwcore.send(
-        new PW.Address(to, PW.AddressType.ckb),
-        new PW.Amount(shrinkUnit(value, CKB.decimals)),
+      const hash = await pwcore.send(
+        new res.Address(to, res.AddressType.ckb),
+        new res.Amount(shrinkUnit(value, CKB.decimals)),
         {
           data,
-          witnessArgs: PW.Builder.WITNESS_ARGS.RawSecp256k1
+          witnessArgs: res.Builder.WITNESS_ARGS.RawSecp256k1
         }
       )
+      return hash
     }
     catch (err) {
       console.error(err)
