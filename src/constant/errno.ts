@@ -24,6 +24,7 @@ export default {
   // TronLink
   tronLinkConfirmationDeclinedByUser: 'Confirmation declined by user',
   tronLinkInsufficientBalance: 'class org.tron.core.exception.ContractValidateException : Validate TransferContract error, no OwnerAccount.',
+  tronLinkAuthorizationRequestsAreBeingProcessed: 4000,
   // imToken
   imTokenUserCanceled: 'user_canceled',
   // Portal Wallet

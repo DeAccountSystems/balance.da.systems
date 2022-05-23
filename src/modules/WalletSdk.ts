@@ -221,7 +221,7 @@ export default class WalletSdk {
         await sleep(1000)
         const { tronWeb } = window
         if (typeof tronWeb !== 'undefined') {
-          if (tronWeb.ready) {
+          if (tronWeb) {
             provider = tronWeb
           }
           else {
@@ -335,7 +335,7 @@ export default class WalletSdk {
         this.reloadPage()
       }
       else if (![errno.metaMaskUserRejectedAccountAccess, errno.metaMaskUserDeniedMessageSignature].includes(err.code)) {
-        if (err.code === errno.metaMaskWalletRequestPermissions) {
+        if (err.code === errno.metaMaskWalletRequestPermissions || err.code === errno.tronLinkAuthorizationRequestsAreBeingProcessed) {
           $alert({
             title: $tt('Tips'),
             message: $tt('Other requests for the wallet are not processed, please try again after processing')
