@@ -7,7 +7,7 @@
       @close="onClose"
     >
       <div class="wallets-connect__cross-chain-tips">
-        {{ $tt('Powerful cross-chain capability is a unique feature of DAS, which means you can register and use DAS in multiple public chain environments. Please select the public chain you are currently using.') }}
+        {{ $tt('Powerful cross-chain capability is a unique feature of .bit, which means you can register and use .bit in multiple public chain environments.') }}
       </div>
       <ul class="wallets-connect__select-wallet-list">
         <li
@@ -26,6 +26,12 @@
             </span>
             <div>
               {{ wallet.title }}
+              <div
+                v-if="[ETH.name, BSC.name].includes(wallet.name)"
+                class="wallets-connect__tronlink__tips"
+              >
+                {{ $tt('Trust, TokenPocket, imToken...') }}
+              </div>
               <div
                 v-if="wallet.protocol === WalletProtocol.tronLink"
                 class="wallets-connect__tronlink__tips"
@@ -174,24 +180,6 @@ export default Vue.extend({
       required: true
     }
   },
-  computed: {
-    ...mapState({
-      me: ME_KEYS.namespace,
-      common: COMMON_KEYS.namespace
-    }),
-    loggedIn (): boolean {
-      return !!this.me.connectedAccount.address
-    },
-    hardwareWalletTipsShowing (): boolean {
-      return this.common.hardwareWalletTipsShow
-    },
-    torusLoginSuccessTipsShowing (): boolean {
-      return !!this.common.torusLoginSuccessTipsShow
-    },
-    connectedAccount (): IConnectedAccount {
-      return this.me.connectedAccount
-    }
-  },
   data () {
     const torusList = ['google', 'twitter', 'discord', 'facebook', 'torus']
 
@@ -214,12 +202,32 @@ export default Vue.extend({
     }]
 
     return {
+      ETH,
+      BSC,
       LANGUAGE,
       walletList,
       torusList,
       WalletProtocol,
       config,
       currentLogin: ''
+    }
+  },
+  computed: {
+    ...mapState({
+      me: ME_KEYS.namespace,
+      common: COMMON_KEYS.namespace
+    }),
+    loggedIn (): boolean {
+      return !!this.me.connectedAccount.address
+    },
+    hardwareWalletTipsShowing (): boolean {
+      return this.common.hardwareWalletTipsShow
+    },
+    torusLoginSuccessTipsShowing (): boolean {
+      return !!this.common.torusLoginSuccessTipsShow
+    },
+    connectedAccount (): IConnectedAccount {
+      return this.me.connectedAccount
     }
   },
   beforeDestroy () {
@@ -361,7 +369,7 @@ export default Vue.extend({
   margin-top: 4px;
   font-weight: 400;
   font-size: 12px;
-  color: $primary-font-color;
+  color: #5C6063;
 }
 
 .wallets-connect__select-wallet-list__arrow {
