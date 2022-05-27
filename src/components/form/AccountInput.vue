@@ -14,6 +14,7 @@
       }"
       :type="type"
       v-on="listeners"
+      @focus="onFocus"
     >
     <span
       v-if="loading"
@@ -105,7 +106,7 @@ import { ValidationResult } from 'vee-validate/dist/types/types'
 import { IAccountParsingRecord } from '~/services/Account'
 import { BSC, IMainChain, Polygon } from '~/constant/chain'
 import Iconfont from '~/components/icon/Iconfont.vue'
-import { collapseString } from '~/modules/tools'
+import { collapseString, toDottedStyle } from '~/modules/tools'
 import { DasAvatar } from 'das-ui-shared'
 import { ParsingRecordType } from '~/constant'
 
@@ -164,7 +165,7 @@ export default Vue.extend({
   },
   watch: {
     chain (newVal, oldVal) {
-      if (newVal.chainId !== oldVal.chainId) {
+      if (newVal.coinType !== oldVal.coinType) {
         this.onInput()
       }
     }
@@ -189,7 +190,8 @@ export default Vue.extend({
       this.showParsingRecords = false
       this.isDasAccount = /\.bit$/.test(this.value)
       if (this.isDasAccount && this.value.length > 4) {
-        const val = this.value.toLowerCase()
+        let val = this.value.toLowerCase()
+        val = toDottedStyle(val)
         this.getAccountParsingRecords(val)
       }
       else if (this.value.length > 20) {
@@ -250,6 +252,11 @@ export default Vue.extend({
     },
     switchParsingRecords () {
       this.showParsingRecords = !this.showParsingRecords
+    },
+    onFocus () {
+      if (this.currentChainParsingRecords.length > 0) {
+        this.showParsingRecords = true
+      }
     }
   }
 })

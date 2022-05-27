@@ -95,10 +95,10 @@ export default defineComponent({
     thousandSplit,
     formatDateTime,
     getSymbol (action: number) {
-      if ([ACTION_TYPE.withdraw, ACTION_TYPE.list, ACTION_TYPE.buyAccount, ACTION_TYPE.dasBalanceRegisterOrRenew, ACTION_TYPE.renewal, ACTION_TYPE.setReverseRecord, ACTION_TYPE.makeOffer, ACTION_TYPE.editOfferAdd, ACTION_TYPE.offerAccepted].includes(action)) {
+      if ([ACTION_TYPE.withdraw, ACTION_TYPE.list, ACTION_TYPE.buyAccount, ACTION_TYPE.dasBalanceRegisterOrRenew, ACTION_TYPE.renewal, ACTION_TYPE.setReverseRecord, ACTION_TYPE.makeOffer, ACTION_TYPE.editOfferAdd, ACTION_TYPE.offerAccepted, ACTION_TYPE.enableSubAccount, ACTION_TYPE.createSubAccount].includes(action)) {
         return '-'
       }
-      else if ([ACTION_TYPE.mergeRewards, ACTION_TYPE.delist, ACTION_TYPE.sellAccount, ACTION_TYPE.transferToTransit, ACTION_TYPE.delReverseRecord, ACTION_TYPE.refundOfDeposit, ACTION_TYPE.cancelOffer, ACTION_TYPE.acceptOffer, ACTION_TYPE.editOfferSub,].includes(action)) {
+      else if ([ACTION_TYPE.mergeRewards, ACTION_TYPE.delist, ACTION_TYPE.sellAccount, ACTION_TYPE.transferToTransit, ACTION_TYPE.delReverseRecord, ACTION_TYPE.refundOfDeposit, ACTION_TYPE.cancelOffer, ACTION_TYPE.acceptOffer, ACTION_TYPE.editOfferSub, ACTION_TYPE.orderRefund].includes(action)) {
         return '+'
       }
     },

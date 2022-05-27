@@ -1,4 +1,4 @@
-# balance.da.systems
+# balance.did.id
 
 ## build setup
 
@@ -25,7 +25,7 @@ $ npm run i18n
 ```
 
 ## api doc
-https://github.com/DeAccountSystems/das-register
+https://github.com/dotbitHQ/das-register
 
 ## identicons service
-https://github.com/DeAccountSystems/identicons
+https://github.com/dotbitHQ/identicons

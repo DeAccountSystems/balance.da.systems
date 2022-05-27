@@ -1,12 +1,19 @@
 import { ActionTree, MutationTree, GetterTree } from 'vuex'
-import { augmentKeys, chainIdHexToNumber } from '~/modules/tools'
-import { BSC, ETH, IMainChain, Polygon } from '~/constant/chain'
+import { augmentKeys } from '~/modules/tools'
+import {
+  ChainType,
+  CoinType,
+  CoinTypeToChainIdMap,
+  EvmCoinTypes,
+  IMainChain
+} from '~/constant/chain'
 import { IReverseRecordRes } from '~/services/Account'
+import { WalletProtocol } from '~/constant'
 
 export interface IConnectedAccount {
   address: string,
   chain: IMainChain,
-  walletName: string,
+  protocol: WalletProtocol,
 }
 
 export interface ICkbAddress {
@@ -22,7 +29,6 @@ const keys = {
   setInviter: 'setInviter',
   setChannel: 'setChannel',
   setConnectedAccount: 'setConnectedAccount',
-  setLoggedIn: 'setLoggedIn',
   setCkbAddressList: 'setCkbAddressList',
   setAvailableBalance: 'setAvailableBalance',
   setTransitBalance: 'setTransitBalance',
@@ -31,8 +37,8 @@ const keys = {
   fetchBalance: 'fetchBalance',
   fetchReverseRecord: 'fetchReverseRecord',
   // getters
-  computedChainId: 'computedChainId',
-  computedEvmChainId: 'computedEvmChainId'
+  computedChainType: 'computedChainType',
+  computedChainId: 'computedChainId'
 }
 
 export const state = () => ({
@@ -42,7 +48,6 @@ export const state = () => ({
   connectedAccount: {
     address: ''
   } as IConnectedAccount,
-  loggedIn: false,
   ckbAddressList: [] as ICkbAddress[],
   availableBalance: '0',
   transitBalance: '0',
@@ -62,11 +67,10 @@ export const mutations: MutationTree<MeState> = {
     state.channel = channel
   },
   [keys.setConnectedAccount]: (state, connectedAccount: IConnectedAccount) => {
-    state.connectedAccount = connectedAccount
-    state.loggedIn = true
-  },
-  [keys.setLoggedIn]: (state, status: boolean) => {
-    state.loggedIn = status
+    state.connectedAccount = {
+      ...state.connectedAccount,
+      ...connectedAccount
+    }
   },
   [keys.setCkbAddressList]: (state, ckbAddress: ICkbAddress) => {
     const res = state.ckbAddressList.find((item) => {
@@ -98,13 +102,13 @@ export const mutations: MutationTree<MeState> = {
 export const actions: ActionTree<MeState, MeState> = {
   async [keys.fetchBalance] ({ state, commit, getters }) {
     try {
-      const computedChainId = getters[keys.computedChainId]
+      const computedChainType = getters[keys.computedChainType]
       const address = state.ckbAddressList.find((item) => {
-        return item.address === state.connectedAccount.address && item.addressChainId === computedChainId
+        return item.address === state.connectedAccount.address && item.addressChainId === computedChainType
       })
 
       const res = await this.$services.account.balanceInfo({
-        chain_type: computedChainId,
+        chain_type: computedChainType,
         address: state.connectedAccount.address,
         transfer_address: address ? address.ckbAddress : ''
       })
@@ -125,7 +129,7 @@ export const actions: ActionTree<MeState, MeState> = {
     }
     try {
       const res = await this.$services.account.getReverseRecord({
-        chain_type: getters[keys.computedChainId],
+        chain_type: getters[keys.computedChainType],
         address: connectedAccount.address
       })
       if (res) {
@@ -140,21 +144,20 @@ export const actions: ActionTree<MeState, MeState> = {
 }
 
 export const getters: GetterTree<MeState, MeState> = {
-  [keys.computedChainId] (state): number {
-    const chainId = state.connectedAccount.chain?.chainId
-    if ([BSC.chainId, Polygon.chainId].includes(chainId)) {
-      return ETH.chainId
+  [keys.computedChainType] (state): number | undefined {
+    const coinType = state.connectedAccount.chain?.coinType
+    let value
+    if (EvmCoinTypes.includes(coinType)) {
+      value = ChainType.eth
     }
-    return chainId
+    else if ([CoinType.trx].includes(coinType)) {
+      value = ChainType.tron
+    }
+    return value
   },
-  [keys.computedEvmChainId] (): number {
-    const { ethereum } = window
-    if (typeof ethereum !== 'undefined' && (ethereum.networkVersion || ethereum.chainId)) {
-      return chainIdHexToNumber(ethereum.networkVersion || ethereum.chainId)
-    }
-    else {
-      return 0
-    }
+  [keys.computedChainId] (state): number | undefined {
+    const coinType = state.connectedAccount.chain?.coinType
+    return CoinTypeToChainIdMap[coinType]
   }
 }
 

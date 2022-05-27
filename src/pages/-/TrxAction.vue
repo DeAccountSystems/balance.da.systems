@@ -10,7 +10,7 @@
 <script lang="ts">
 import { defineComponent } from '@nuxtjs/composition-api'
 import { ACTION_TYPE } from '~/constant'
-import { collapseString } from '~/modules/tools'
+import { collapseString, toHashedStyle } from '~/modules/tools'
 
 export default defineComponent({
   name: 'TrxAction',
@@ -23,7 +23,7 @@ export default defineComponent({
   methods: {
     getTrxAction (action: number) {
       let text = ''
-      const account = collapseString(this.account.account, 4, 8)
+      const account = collapseString(toHashedStyle(this.account.account), 4, 8)
       switch (action) {
         case ACTION_TYPE.withdraw:
           text = this.$tt('Send')
@@ -77,6 +77,15 @@ export default defineComponent({
         case ACTION_TYPE.refundOfDeposit:
           text = this.$tt('Refund of frozen CKB')
           break
+        case ACTION_TYPE.orderRefund:
+          text = this.$tt('Refund')
+          break
+        case ACTION_TYPE.enableSubAccount:
+          text = this.$tt('Enable sub-accounts')
+          break
+        case ACTION_TYPE.createSubAccount:
+          text = this.$tt('Mint sub-accounts')
+          break
       }
       return text
     }
@@ -99,7 +108,8 @@ export default defineComponent({
   &.trx-action__action0,
   &.trx-action__action6,
   &.trx-action__action12,
-  &.trx-action__action18 {
+  &.trx-action__action18,
+  &.trx-action__action24 {
     background: #D1CEFF;
     color: #776DCF;
   }
@@ -130,7 +140,8 @@ export default defineComponent({
 
   &.trx-action__action4,
   &.trx-action__action10,
-  &.trx-action__action16 {
+  &.trx-action__action16,
+  &.trx-action__action22 {
     background: #d0d0d2;
     color: #626169;
   }
@@ -138,6 +149,7 @@ export default defineComponent({
   &.trx-action__action5,
   &.trx-action__action11,
   &.trx-action__action17,
+  &.trx-action__action23,
   &.trx-action__action100 {
     background: #D1CEFF;
     color: #776DCF;

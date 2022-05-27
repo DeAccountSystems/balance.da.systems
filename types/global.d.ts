@@ -2,7 +2,6 @@
 interface Window {
   i18n: any,
   eruda: any,
-  // @ts-expect-error
   ethereum: any,
   Web3: any,
   web3?: any,

@@ -7,9 +7,10 @@
       @click="onClose"
     >
       <Iconfont
-        name="close-fill"
-        size="18"
-        color="#A0A1AB" />
+        name="close"
+        size="36"
+        color="#A0A1AB"
+      />
     </span>
   </div>
 </template>
@@ -42,14 +43,14 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-@import 'src/assets/variables';
+@import "src/assets/variables";
 
 .content-header {
   position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px 16px 20px 24px;
+  padding: 32px 16px 32px 32px;
 }
 
 .content-header__title {
@@ -57,18 +58,18 @@ export default defineComponent({
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  font-size: $font-size-24;
-  font-weight: 700;
+  font-size: 24px;
+  font-weight: 600;
   color: $primary-font-color;
   text-align: left;
+  line-height: 28px;
 }
 
 .content-header__close {
   position: absolute;
-  right: 12px;
-  top: 15px;
+  right: 16px;
+  top: 28px;
   border-radius: 50%;
-  padding: 9px;
   cursor: pointer;
 
   &:hover {

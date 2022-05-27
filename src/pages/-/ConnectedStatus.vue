@@ -18,13 +18,13 @@
         class="connected-status__address-info"
       >
         <template v-if="reverseRecord.account && reverseRecord.is_valid">
-          <span class="connected-status__reverse-record">{{ reverseRecord.account }}</span>
+          <span class="connected-status__reverse-record">{{ toHashedStyle(reverseRecord.account) }}</span>
           <span
             class="connected-status__reverse-record__address"
             @click="onCopyAddress(connectedAccount.address)"
           >
             <Iconfont
-              :name="connectedAccount.chain.icon"
+              :name="connectedAccount.chain && connectedAccount.chain.icon"
               size="14"
             />
             {{ collapseString(connectedAccount.address, 6, 6) }}
@@ -38,19 +38,12 @@
         <template v-else>
           <span
             class="connected-status__address"
-            @click="onCopyAddress(connectedAccount.address)"
           >
             {{ collapseString(connectedAccount.address, 6, 6) }}
-            <Iconfont
-              class="connected-status__copy-icon"
-              name="copy"
-              color="#636D85"
-              size="14"
-            />
           </span>
           <span class="connected-status__wallet">
             <Iconfont
-              :name="connectedAccount.chain.icon"
+              :name="connectedAccount.chain && connectedAccount.chain.icon"
               size="16"
             />
             {{ connectedAccount.chain && connectedAccount.chain.name }}
@@ -82,7 +75,7 @@ import { defineComponent } from '@nuxtjs/composition-api'
 import BaseCard from '~/components/card/BaseCard.vue'
 import { mapState } from 'vuex'
 import { IConnectedAccount, ME_KEYS } from '~/store/me'
-import { collapseString, copyText } from '~/modules/tools'
+import { collapseString, copyText, toHashedStyle } from '~/modules/tools'
 import Iconfont from '~/components/icon/Iconfont.vue'
 import Button from '~/components/Button.vue'
 import { DasAvatar } from 'das-ui-shared'
@@ -105,7 +98,7 @@ export default defineComponent({
       me: ME_KEYS.namespace
     }),
     loggedIn (): boolean {
-      return this.me.loggedIn
+      return !!this.me.connectedAccount.address
     },
     connectedAccount (): IConnectedAccount {
       return this.me.connectedAccount
@@ -119,6 +112,7 @@ export default defineComponent({
   },
   methods: {
     collapseString,
+    toHashedStyle,
     onConnectWallet () {
       this.$walletSdk.walletsConnect()
     },
@@ -162,7 +156,6 @@ export default defineComponent({
   font-size: 18px;
   font-weight: bold;
   line-height: 21px;
-  cursor: pointer;
 }
 
 .connected-status__reverse-record {
@@ -172,10 +165,6 @@ export default defineComponent({
   font-size: 18px;
   font-weight: bold;
   line-height: 21px;
-}
-
-.connected-status__copy-icon {
-  margin-left: 6px;
 }
 
 .connected-status__actions__icon {

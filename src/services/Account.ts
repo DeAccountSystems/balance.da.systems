@@ -189,7 +189,7 @@ export default class Account extends BasicService {
     address
   }: {
     chain_type: number,
-    address: string
+    address: string,
   }): Promise<IReverseRecordRes> {
     return this.axios.post('/reverse/latest', {
       chain_type,

@@ -4,7 +4,8 @@ module.exports = {
       './src/**/*.{js,ts,vue}',
       '!./src/static/**'
     ],
-    output: './src/locales/raw'
+    output: './src/locales/raw',
+    langs: ['en', 'zh-CN']
   },
   clean: {
     input: './src/locales/raw',
