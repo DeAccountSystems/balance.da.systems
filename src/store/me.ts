@@ -124,12 +124,13 @@ export const actions: ActionTree<MeState, MeState> = {
   },
   async [keys.fetchReverseRecord] ({ commit, state, getters }) {
     const connectedAccount = state.connectedAccount
-    if (!connectedAccount.address) {
+    const chainType = getters[keys.computedChainType]
+    if (!connectedAccount.address || !chainType) {
       return
     }
     try {
       const res = await this.$services.account.getReverseRecord({
-        chain_type: getters[keys.computedChainType],
+        chain_type: chainType,
         address: connectedAccount.address
       })
       if (res) {

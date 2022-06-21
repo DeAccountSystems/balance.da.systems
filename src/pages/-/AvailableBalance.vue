@@ -12,7 +12,7 @@
         <a
           class="available-balance__transit_balance__faq"
           :href="$i18n.locale === 'zh-CN' ? 'https://talk.did.id/t/bestdas-com/115#ckb-8' : `https://talk.did.id/t/faq-bestdas-com/116#why-does-the-ckb-i-sent-needs-to-be-activated-and-is-the-activation-process-secure-8`"
-          :target="isMobile ? '_self' : '_blank'"
+          target="_blank"
         >
           <Iconfont name="help" size="14" color="#929BB1" />
         </a>
@@ -121,7 +121,7 @@
               <a
                 class="transit-balance__deposit__tips__link"
                 :href="$i18n.locale === 'zh-CN' ? 'https://talk.did.id/t/bestdas-com/115#h-350-ckb-7' : 'https://talk.did.id/t/faq-bestdas-com/116#why-is-it-recommended-to-send-at-least-350-ckb-6'"
-                :target="isMobile ? '_self' : '_blank'"
+                target="_blank"
               >
                 {{ $tt('Why?') }}
               </a>

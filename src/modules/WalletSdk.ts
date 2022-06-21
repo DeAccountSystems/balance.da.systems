@@ -221,7 +221,7 @@ export default class WalletSdk {
         await sleep(1000)
         const { tronWeb } = window
         if (typeof tronWeb !== 'undefined') {
-          if (tronWeb) {
+          if (tronWeb.defaultAddress.base58) {
             provider = tronWeb
           }
           else {
@@ -273,7 +273,8 @@ export default class WalletSdk {
                 protocol: this.protocol,
                 chain: CoinTypeToChainMap[this.coinType]
               })
-              this.reloadPage()
+              this.walletsConnectResetCurrentLogin()
+              this.closeWalletsConnect()
               return
             }
             catch (err) {

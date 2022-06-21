@@ -103,7 +103,7 @@ export default defineComponent({
       }
     },
     goTrxInfo () {
-      window.open(`${CKB.explorerTrx}${this.account.hash}`, this.isMobile ? '_self' : '_blank')
+      window.open(`${CKB.explorerTrx}${this.account.hash}`)
     }
   }
 })

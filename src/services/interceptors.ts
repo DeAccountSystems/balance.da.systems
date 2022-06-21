@@ -12,7 +12,7 @@ export function onFulfilled (context: Context) {
         if (res.data.err_no === errno.apiErrorCodeSystemUpgrade) {
           context.app.$alert({
             title: context.app.$tt('Tips'),
-            message: context.app.$tt('The service is under maintenance, please try again later.')
+            message: context.app.$tt('upgrade notice')
           })
         }
         else {
