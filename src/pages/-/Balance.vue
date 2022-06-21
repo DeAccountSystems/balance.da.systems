@@ -169,6 +169,9 @@ export default defineComponent({
     },
     async getMyTrxHistory () {
       this.fetchDataLoading = true
+      if (!this.computedChainType || !this.connectedAccount.address) {
+        return
+      }
       try {
         const res = await this.$services.account.myTrxHistory({
           chainType: this.computedChainType,

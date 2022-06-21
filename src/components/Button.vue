@@ -89,7 +89,7 @@ export default defineComponent({
     },
     target: {
       type: String,
-      default: '_blank'
+      default: '_self'
     },
     disabled: Boolean,
   }
