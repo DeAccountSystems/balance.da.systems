@@ -4,24 +4,24 @@
 
 ```bash
 # install dependencies
-$ npm install
+$ yarn install
 
 # serve with hot reload at localhost:10300
-$ npm run dev
+$ yarn run dev
 
 # build for production and launch server
-$ npm run build
-$ npm run start
+$ yarn run build
+$ yarn run start
 
 # generate static project
-$ npm run generate
+$ yarn run generate
 ```
 
 For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
 
 ## i18n
 ```bash
-$ npm run i18n
+$ yarn run i18n
 ```
 
 ## api doc

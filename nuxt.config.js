@@ -47,7 +47,7 @@ export default {
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ],
     script: [{
-      src: '//at.alicdn.com/t/font_2747750_mpby85lxsro.js',
+      src: '/fonts/iconfont.js',
       async: true
     }]
   },
