@@ -323,8 +323,8 @@ export default defineComponent({
           }
           else if (err.code === errno.apiErrorCodeInsufficientBalance) {
             this.$alert({
-              title: this.$tt('Insufficient balance'),
-              message: this.$tt('Insufficient balance. Please check your balance.The minimum amount to be activated is 350 CKB. DAS is a decentralized marketplace and interaction with the contract requires a balance of at least 350 CKB.')
+              title: this.$tt('Fail to activate'),
+              message: this.$tt('The amount to be activated needs to be greater than 350 CKB. Please click "Receive" to get your CKB address, transfer more CKB and try again.')
             })
           }
           else if (err.code === errno.apiErrorCodeNotEnoughChange) {

@@ -1,6 +1,8 @@
-import { AxiosError, AxiosResponse } from 'axios'
 import { Context } from '@nuxt/types'
+import { AxiosError, AxiosResponse } from 'axios'
 import errno from '~/constant/errno'
+
+let upgradeNotified = false
 
 export function onFulfilled (context: Context) {
   return (res: AxiosResponse) => {
@@ -10,10 +12,13 @@ export function onFulfilled (context: Context) {
       }
       else {
         if (res.data.err_no === errno.apiErrorCodeSystemUpgrade) {
-          context.app.$alert({
-            title: context.app.$tt('Tips'),
-            message: context.app.$tt('upgrade notice')
-          })
+          if (!upgradeNotified) {
+            context.app.$alert({
+              title: context.app.$tt('Tips'),
+              message: context.app.$tt('upgrade notice')
+            })
+          }
+          upgradeNotified = true
         }
         else {
           const serverError: any = new Error(res.data.err_msg)
@@ -31,6 +36,11 @@ export function onFulfilled (context: Context) {
 }
 
 export function onRejected (err: AxiosError) {
-  err.code = String(errno.networkError)
+  if (!err.code) {
+    err.code = String(err?.response?.status) || String(errno.networkError)
+  }
+  if (err?.response?.statusText) {
+    err.message = err?.response?.statusText
+  }
   throw err
 }

@@ -86,6 +86,10 @@ export default defineComponent({
         case ACTION_TYPE.createSubAccount:
           text = this.$tt('Mint sub-accounts')
           break
+        case ACTION_TYPE.accountRecycled:
+        case ACTION_TYPE.accountRecycledRefund:
+          text = this.$tt('{account} recycled', { account: account })
+          break
       }
       return text
     }
@@ -117,7 +121,8 @@ export default defineComponent({
   &.trx-action__action1,
   &.trx-action__action7,
   &.trx-action__action13,
-  &.trx-action__action19 {
+  &.trx-action__action19,
+  &.trx-action__action26 {
     background: #F0DAC3;
     color: #CFA16D;
   }
