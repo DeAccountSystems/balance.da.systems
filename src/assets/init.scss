@@ -11,7 +11,7 @@
 }
 
 html {
-  font-size: 14px;
+  font-size: $font-size-14;
   color: $primary-font-color;
   font-family: $body-font-family;
   line-height: 1.15; /* 1 */
@@ -185,6 +185,7 @@ button:-moz-focusring,
 
 textarea {
   overflow: auto;
+  resize: none;
 }
 
 /**
