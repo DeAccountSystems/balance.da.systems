@@ -13758,10 +13758,10 @@ walker@^1.0.7:
   dependencies:
     makeerror "1.0.12"
 
-wallet-sdk-js@^0.0.8:
-  version "0.0.8"
-  resolved "https://registry.yarnpkg.com/wallet-sdk-js/-/wallet-sdk-js-0.0.8.tgz#79498e6de2ff29a2c576f853ad432145ee9a2576"
-  integrity sha512-DYuUZL3yqCJ0uqvcw94H3x7TpxHsfsdYNqTH1NPyMXrOBBOA+Ny7cPErEbpVe+4adW/Wh/jMkYZSluI4DrIz/g==
+wallet-sdk-js@^0.0.10:
+  version "0.0.10"
+  resolved "https://registry.yarnpkg.com/wallet-sdk-js/-/wallet-sdk-js-0.0.10.tgz#e51e8e80d73117e56d36e7d81185c34ffde5446f"
+  integrity sha512-b0KCqnrOGJ8bb+eq6dhLUtDuWxu+JcCx05u4b/BuAPSOcfz4J4qCm8r9Luw7cxstq7mHoM7WQ3HE1yroijQ7eQ==
   dependencies:
     bn.js "^5.2.0"
     number-to-bn "^1.7.0"
