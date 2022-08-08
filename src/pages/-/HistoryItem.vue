@@ -69,7 +69,7 @@
 import Iconfont from '~/components/icon/Iconfont.vue'
 import BaseListItem from '~/components/list/BaseListItem.vue'
 import TrxAction from '~/pages/-/TrxAction.vue'
-import { formatDateTime, isMobile, fromSatoshi, thousandSplit } from '~/modules/tools'
+import { formatDateTime, fromSatoshi, isMobile, thousandSplit } from '~/modules/tools'
 import { ACTION_TYPE } from '~/constant'
 import { defineComponent } from '@nuxtjs/composition-api'
 import { CKB } from '~/constant/chain'
@@ -98,7 +98,7 @@ export default defineComponent({
       if ([ACTION_TYPE.withdraw, ACTION_TYPE.list, ACTION_TYPE.buyAccount, ACTION_TYPE.dasBalanceRegisterOrRenew, ACTION_TYPE.renewal, ACTION_TYPE.setReverseRecord, ACTION_TYPE.makeOffer, ACTION_TYPE.editOfferAdd, ACTION_TYPE.offerAccepted, ACTION_TYPE.enableSubAccount, ACTION_TYPE.createSubAccount].includes(action)) {
         return '-'
       }
-      else if ([ACTION_TYPE.mergeRewards, ACTION_TYPE.delist, ACTION_TYPE.sellAccount, ACTION_TYPE.transferToTransit, ACTION_TYPE.delReverseRecord, ACTION_TYPE.refundOfDeposit, ACTION_TYPE.cancelOffer, ACTION_TYPE.acceptOffer, ACTION_TYPE.editOfferSub, ACTION_TYPE.orderRefund, ACTION_TYPE.accountRecycled, ACTION_TYPE.accountRecycledRefund].includes(action)) {
+      else if ([ACTION_TYPE.mergeRewards, ACTION_TYPE.delist, ACTION_TYPE.sellAccount, ACTION_TYPE.transferToTransit, ACTION_TYPE.delReverseRecord, ACTION_TYPE.refundOfDeposit, ACTION_TYPE.cancelOffer, ACTION_TYPE.acceptOffer, ACTION_TYPE.editOfferSub, ACTION_TYPE.orderRefund, ACTION_TYPE.accountRecycled, ACTION_TYPE.accountRecycledCrossRefund, ACTION_TYPE.accountRecycledRefund, ACTION_TYPE.subAccountProfit].includes(action)) {
         return '+'
       }
     },

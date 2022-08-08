@@ -1,7 +1,7 @@
 <template>
   <div
     class="account-input"
-    @click.stop.prevent
+    v-click-outside="onClickOutside"
   >
     <input
       v-model.trim="value"
@@ -104,10 +104,12 @@ import Vue, { PropType } from 'vue'
 import { validate } from 'vee-validate'
 import { ValidationResult } from 'vee-validate/dist/types/types'
 import { IAccountParsingRecord } from '~/services/Account'
-import { BSC, IMainChain, Polygon } from '~/constant/chain'
+import { IMainChain } from '~/constant/chain'
 import Iconfont from '~/components/icon/Iconfont.vue'
-import { collapseString, toDottedStyle } from '~/modules/tools'
+import { collapseString, findParsingRecordChain, toDottedStyle } from '~/modules/tools'
 import { DasAvatar } from 'das-ui-shared'
+// @ts-ignore
+import vClickOutside from 'v-click-outside'
 import { ParsingRecordType } from '~/constant'
 
 export default Vue.extend({
@@ -115,6 +117,9 @@ export default Vue.extend({
   components: {
     Iconfont,
     DasAvatar,
+  },
+  directives: {
+    clickOutside: vClickOutside.directive,
   },
   inheritAttrs: false,
   props: {
@@ -144,7 +149,6 @@ export default Vue.extend({
       value: '',
       loading: false,
       isDasAccount: false,
-      parsingRecords: [] as IAccountParsingRecord[],
       currentChainParsingRecords: [] as IAccountParsingRecord[],
       showParsingRecords: false,
       toAddress: '',
@@ -170,20 +174,10 @@ export default Vue.extend({
       }
     }
   },
-  mounted () {
-    document.addEventListener('click', this.onClose)
-  },
-  beforeDestroy () {
-    document.removeEventListener('click', this.onClose)
-  },
   methods: {
     collapseString,
-    onClose () {
-      this.showParsingRecords = false
-    },
     onInput () {
       this.addressErrors = []
-      this.parsingRecords = []
       this.currentChainParsingRecords = []
       this.toAddress = ''
       this.toLabel = ''
@@ -195,7 +189,7 @@ export default Vue.extend({
         this.getAccountParsingRecords(val)
       }
       else if (this.value.length > 20) {
-        validate(this.value, `required|address:${this.chain.symbol}`, {
+        validate(this.value, `required|address:${this.chain.coinType}`, {
           name: this.name
         })
           .then((result: ValidationResult) => {
@@ -214,17 +208,10 @@ export default Vue.extend({
         this.loading = true
         const res = await this.$services.account.accountParsingRecords(account)
         if (res.records && res.records.length > 0) {
-          this.parsingRecords = res.records
-          this.currentChainParsingRecords = this.parsingRecords.filter((record: IAccountParsingRecord) => {
+          this.currentChainParsingRecords = res.records.filter((record: IAccountParsingRecord) => {
             const type = record.type
-            let key = record.key
-            if (key === 'bsc') {
-              key = BSC.symbol.toLowerCase()
-            }
-            else if (key === 'polygon') {
-              key = Polygon.symbol.toLowerCase()
-            }
-            return type === ParsingRecordType.address && key === String(this.chain.symbol.toLowerCase())
+            const key = findParsingRecordChain(record.key).coinType
+            return type === ParsingRecordType.address && key === this.chain.coinType
           })
           if (this.currentChainParsingRecords.length > 0) {
             this.showParsingRecords = true
@@ -257,6 +244,9 @@ export default Vue.extend({
       if (this.currentChainParsingRecords.length > 0) {
         this.showParsingRecords = true
       }
+    },
+    onClickOutside () {
+      this.showParsingRecords = false
     }
   }
 })

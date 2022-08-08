@@ -3,9 +3,11 @@ import createPersistedState from 'vuex-persistedstate'
 import { appNmae } from '~~/config'
 import { COMMON_KEYS } from '~/store/common'
 
+export const VuexPersistedStateKey = appNmae + 'v3'
+
 export default ({ store }: Context) => {
   createPersistedState({
-    key: appNmae + 'v2',
+    key: VuexPersistedStateKey,
     paths: [
       COMMON_KEYS.namespace,
       'me.connectedAccount',

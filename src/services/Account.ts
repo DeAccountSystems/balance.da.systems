@@ -117,10 +117,12 @@ export default class Account extends BasicService {
 
   /**
    * available balance withdraw
+   * @param evm_chain_id
    * @param chain_type
    * @param address
    * @param receiver_chain_type
    * @param receiver_address
+   * @param withdraw_all
    * @param amount
    */
   availableBalanceWithdraw ({

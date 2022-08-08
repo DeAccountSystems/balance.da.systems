@@ -30,7 +30,7 @@
                 v-if="[ETH.name, BSC.name].includes(wallet.name)"
                 class="wallets-connect__tronlink__tips"
               >
-                {{ $tt('Trust, TokenPocket, imToken...') }}
+                {{ $tt('Trust, TokenPocket, imToken, OneKey...') }}
               </div>
               <div
                 v-if="wallet.protocol === WalletProtocol.tronLink"

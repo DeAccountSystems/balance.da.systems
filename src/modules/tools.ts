@@ -5,8 +5,9 @@ import abcCopy from 'abc-copy'
 import { SignTypedDataVersion, TypedMessage, TypedDataUtils } from '@metamask/eth-sig-util'
 import dayjs, { Dayjs } from 'dayjs'
 import { TIME_FORMAT, TOKEN_DECIMAL_PLACES } from '~/constant'
-import { CKB } from '~/constant/chain'
+import { CKB, ICoinTypeInfo, PARSING_RECORD_SUPPORT_CHAINS } from '~/constant/chain'
 import Das from 'das-sdk'
+import GraphemeSplitter from 'grapheme-splitter'
 
 /**
  * Used to determine whether it is a mobile terminal
@@ -113,8 +114,10 @@ export function copyText (text: string, el?: Element): Promise<void> {
  * @param tokenStr
  */
 export function collapseString (inputString = '', head = 4, tail = 4, tokenStr = '...'): string {
+  const splitter = new GraphemeSplitter()
+  const split = splitter.splitGraphemes(inputString)
   if (inputString.length > 12) {
-    return inputString.slice(0, head) + tokenStr + inputString.slice(-tail)
+    return split.slice(0, head).join('') + tokenStr + split.slice(split.length - tail, split.length).join('')
   }
   else {
     return inputString
@@ -277,5 +280,26 @@ export function toDottedStyle (inputAccount: string): string {
 }
 
 export function toHashedStyle (inputAccount: string): string {
-  return Das.toHashedStyle(inputAccount)
+  // return Das.toHashedStyle(inputAccount)
+  return inputAccount
+}
+
+/**
+ * Find the corresponding key-value pair by parsing the value of the record
+ * @param value
+ */
+export function findParsingRecordChain (value: string): ICoinTypeInfo {
+  const chain = PARSING_RECORD_SUPPORT_CHAINS.find((item) => {
+    return item.value === value || item.coinType === value
+  })
+  if (chain) {
+    return chain
+  }
+  else {
+    return {
+      text: value.toUpperCase(),
+      value,
+      coinType: ''
+    }
+  }
 }

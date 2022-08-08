@@ -74,6 +74,7 @@ import {
 } from '~/modules/tools'
 import { IConnectedAccount, ME_KEYS } from '~/store/me'
 import config from '~~/config'
+import { VuexPersistedStateKey } from '~/plugins/vuex-persistedstate'
 
 export default Vue.extend({
   name: 'Debug',
@@ -113,7 +114,7 @@ export default Vue.extend({
       return window.location.origin
     },
     localStorageValue (): string {
-      return localStorage.getItem(config.appNmae + 'v2') || ''
+      return localStorage.getItem(VuexPersistedStateKey) || ''
     }
   },
   beforeMount () {
@@ -173,7 +174,7 @@ export default Vue.extend({
       })
     },
     onClearCache () {
-      localStorage.removeItem(config.appNmae + 'v2')
+      localStorage.removeItem(VuexPersistedStateKey)
       window.location.href = config.domain
     }
   }
