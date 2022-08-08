@@ -123,6 +123,27 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
-    extractCSS: true
+    extractCSS: true,
+    babel: {
+      presets ({ isServer }, [preset, options]) {
+        let targets
+        // Keep default target in server side
+        if (isServer) {
+          targets = { node: 'current' }
+        }
+        // Custom target in client side
+        else {
+          // Compile to ES5 for better compatibility in production
+          if (abcConfig.isProd) {
+            targets = { ie: 11 }
+          }
+          // Compile to ESNext for easier debugging in development
+          else {
+            targets = { chrome: 100 }
+          }
+        }
+        options.targets = targets
+      }
+    }
   }
 }

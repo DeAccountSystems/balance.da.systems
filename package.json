@@ -1,7 +1,7 @@
 {
   "name": "balance.did.id",
   "description": "balance.did.id",
-  "version": "0.0.11",
+  "version": "0.0.12",
   "scripts": {
     "predev": "npm run i18n",
     "dev": "nuxt",
@@ -33,6 +33,7 @@
     "dayjs": "^1.10.6",
     "decimal.js": "^10.3.1",
     "ethereumjs-util": "^7.1.1",
+    "grapheme-splitter": "^1.0.4",
     "js-cookie": "^2.2.1",
     "lodash.debounce": "^4.0.8",
     "nuxt": "^2.15.7",
@@ -42,7 +43,7 @@
     "vee-validate": "^3.4.11",
     "vue-i18n": "^8.25.0",
     "vuex-persistedstate": "^3.2.0",
-    "wallet-sdk-js": "^0.0.10"
+    "wallet-sdk-js": "^0.0.12"
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.14.7",

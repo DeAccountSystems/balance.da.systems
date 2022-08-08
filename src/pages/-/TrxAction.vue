@@ -88,7 +88,11 @@ export default defineComponent({
           break
         case ACTION_TYPE.accountRecycled:
         case ACTION_TYPE.accountRecycledRefund:
+        case ACTION_TYPE.accountRecycledCrossRefund:
           text = this.$tt('{account} recycled', { account: account })
+          break
+        case ACTION_TYPE.subAccountProfit:
+          text = this.$tt('From SuperDID')
           break
       }
       return text

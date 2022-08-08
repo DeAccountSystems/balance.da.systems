@@ -52,6 +52,8 @@ export enum ACTION_TYPE {
   createSubAccount, // create sub account
   accountRecycled = 26, // account recycled app.did.id refund
   accountRecycledRefund = 27, // account recycled did.top refund
+  accountRecycledCrossRefund = 28, // account recycled cross refund
+  subAccountProfit = 29, // SuperDID subAccount profit
   refundOfDeposit = 100, // refund of deposit
 }
 

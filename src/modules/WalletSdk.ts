@@ -57,7 +57,7 @@ export default class WalletSdk {
       this.walletsConnectInstance.$on('connect', (params: any) => {
         this.protocol = params.protocol
         this.coinType = params.chain.coinType
-        this.onConnect(true)
+        void this.onConnect(true)
       })
       const _div = document.createElement('div')
       document.body.appendChild(_div)
@@ -90,7 +90,7 @@ export default class WalletSdk {
       case CoinType.eth:
         message = isProdData ? $tt('Please switch your wallet to the Ethereum main network before connecting') : $tt('Please switch your wallet to the Goerli test network before connecting')
         break
-      case CoinType.bnb:
+      case CoinType.bsc:
         message = isProdData ? $tt('Please switch your wallet to the BSC main network before connecting') : $tt('Please switch your wallet to the BSC Testnet before connecting')
         break
       case CoinType.matic:
@@ -111,7 +111,7 @@ export default class WalletSdk {
     provider.on('accountsChanged', (accounts: string[]) => {
       const connectedAccount = store?.state.me.connectedAccount
       const address = connectedAccount.address
-      const account = accounts && accounts[0]
+      const account = accounts?.[0]
 
       if (account && account.toLowerCase() === address.toLowerCase()) {
         return
