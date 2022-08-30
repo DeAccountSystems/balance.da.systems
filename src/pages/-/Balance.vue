@@ -29,6 +29,7 @@
     <Dialog
       :showing="createCkbAddressDialogShowing"
       :title="$tt('Get your CKB address')"
+      closeButton
       @close="onCloseCreateCkbAddressDialog"
     >
       <div class="balance__create-ckb-address__tips">{{ $tt('Before you continue, DAS needs to get your CKB address through a secure ETH/BSC/MATIC signature.') }}</div>

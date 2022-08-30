@@ -67,7 +67,7 @@ export default defineComponent({
 
 .content-header__close {
   position: absolute;
-  right: 16px;
+  right: 24px;
   top: 28px;
   border-radius: 50%;
   cursor: pointer;
