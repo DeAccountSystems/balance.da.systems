@@ -116,7 +116,7 @@ export function copyText (text: string, el?: Element): Promise<void> {
 export function collapseString (inputString = '', head = 4, tail = 4, tokenStr = '...'): string {
   const splitter = new GraphemeSplitter()
   const split = splitter.splitGraphemes(inputString)
-  if (inputString.length > 12) {
+  if (split.length > 12) {
     return split.slice(0, head).join('') + tokenStr + split.slice(split.length - tail, split.length).join('')
   }
   else {
